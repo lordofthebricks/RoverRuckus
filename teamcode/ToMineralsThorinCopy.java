@@ -193,7 +193,7 @@ runtime.reset();
 
             runtime.reset();
 
-            while (opModeIsActive() && (runtime.seconds() < 3)){
+            while (opModeIsActive() && (runtime.seconds() < 2)){
                 robot.Lift.setPower(-1);
             }
 
@@ -286,20 +286,28 @@ runtime.reset();
                                // } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                                 } else if (goldMineralX > silverMineral1X ) {
                                     telemetry.addData("Gold Mineral Position", "Center");
-                                    encoderDrive(.4,38,38,38,38,3);
+                                    encoderDrive(.6,38,38,38,38,3);
                                    // encoderDrive(.4,6,6,6,6,3);
                                     encoderDrive(.4,12,12,12,12,3);
                                     encoderDrive(.4, 5,-5,-5,5,3);
                                     encoderDrive(.4, 14,14,14,14,3);
-                                    encoderDrive(.4,10,-10,-10,10,3);
+                                    encoderDrive(.4,8,-8,-8,8,1);
                                     while (runtime.seconds() < 3){
                                         robot.Dumper.setPosition(.175);
                                     }
                                     robot.Dumper.setPosition(.75);
                                     runtime.reset();
-                                    encoderDrive(.4,-150,-150,-150,-150,3);
-                                    encoderDrive(.4,250,-250,-250,250,3);
-                                    encoderDrive(.4,90,90,90,90,3);
+                                  encoderDrive(.7,-20,-20,-20,-20,3);
+                                  //Right top is set negative, Right bottom is set postive, Left top is set positive, Left bottom is set negative
+                                  encoderDrive(.7, 3, -3, 3,-3, 1);
+                                  encoderDrive(.7,-30,-30,-30,-30,4);
+                                  encoderDrive(.5,-7, 7, -7, 7, 3);
+                                  encoderDrive(.4,46.5,-46.5,-46.5,46.5,5);
+                                  encoderDrive(.9, 15,15,15,15,3);
+                                  encoderDrive(.4, 7,0,0,7,3);
+
+                                  robot.Elbow.setPosition(.3);
+                                    //TEST  encoderDrive(.4,90,90,90,90,3);
                                     //encoderDrive(.4,-6,6,6,-6,3);
                                     //encoderDrive(.4,);
                                     //rotate(20,.3);
