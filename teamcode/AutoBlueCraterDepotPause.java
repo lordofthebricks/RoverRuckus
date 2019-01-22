@@ -7,7 +7,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "AutoBlueCraterDepotPause")
-@Disabled
 public class AutoBlueCraterDepotPause extends LinearOpMode {
     LOTBHardware robot = new LOTBHardware();
     ElapsedTime runtime = new ElapsedTime();

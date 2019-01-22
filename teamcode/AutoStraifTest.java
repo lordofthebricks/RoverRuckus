@@ -11,6 +11,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 @com.qualcomm.robotcore.eventloop.opmode.Autonomous(name ="Autonomous", group ="John")
+@Disabled
 public class AutoStraifTest extends LinearOpMode
 {
     //int Coor = Math.round()

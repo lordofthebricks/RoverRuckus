@@ -7,6 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous (name = "EncoderTest")
+@Disabled
 public class LOTB_Autonomous_Encoders extends LinearOpMode
 {
     static final double     COUNTS_PER_MOTOR_REV    = 1120 ;    // eg: DC Motor Encoder

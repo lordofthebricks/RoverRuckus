@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.hardware.bosch.BNO055IMU;
-import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -9,27 +8,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.Func;
-import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.Acceleration;
 import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesOrder;
 import org.firstinspires.ftc.robotcore.external.navigation.AxesReference;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
-import org.firstinspires.ftc.robotcore.external.navigation.Position;
-import org.firstinspires.ftc.robotcore.external.navigation.Velocity;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.tfod.Recognition;
 import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
-import java.util.Locale;
 
-@Autonomous (name = "AutonomousTestwitone")
+@Autonomous(name = "ToMineralThorinBad")
 @Disabled
-public class AutonomousTestwitone extends LinearOpMode
+public class ToMineralsThorinBad extends LinearOpMode
 {
 
     //int Coor = Math.round()
@@ -45,14 +36,19 @@ public class AutonomousTestwitone extends LinearOpMode
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.14159265);
     Orientation angles;
-    Acceleration gravity;
-    double power = .6;
+    public static double correction;
+    //static double dumperPosition = .75;
+    public static double globalAngle = .30;
+    public static double power = correction;
+    Orientation lastAngles = new Orientation();
+
+    //double power = .6;
     /**
      * {@link #vuforia} is the variable we will use to store our instance of the Vuforia
      * localization engine.
      */
     private VuforiaLocalizer vuforia;
-    BNO055IMU imu;
+    //BNO055IMU imu;
     /**
      * {@link #tfod} is the variable we will use to store our instance of the Tensor Flow Object
      * Detection engine.
@@ -60,7 +56,7 @@ public class AutonomousTestwitone extends LinearOpMode
     private TFObjectDetector tfod;
 
     public void runOpMode()throws InterruptedException{
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        /*BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
         parameters.calibrationDataFile = "BNO055IMUCalibration.json"; // see the calibration sample opmode
@@ -68,25 +64,64 @@ public class AutonomousTestwitone extends LinearOpMode
         parameters.loggingTag          = "IMU";
         parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
 
-        composeTelemetry();
         imu = hardwareMap.get(BNO055IMU.class, "imu");
-        imu.initialize(parameters);
+        imu.initialize(parameters);*/
 
         // Set up our telemetry dashboard
-
+        // composeTelemetry();
 
         // Wait until we're told to go
-        waitForStart();
+        //waitForStart();
 
         // Start the logging of measured acceleration
-        imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
+        //imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
-        angles = imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        // angles = imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.mode                = BNO055IMU.SensorMode.IMU;
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.loggingEnabled      = false;
 
         robot.init(hardwareMap);
+
+        robot.IMU.initialize(parameters);
+
+        telemetry.addData("Mode", "calibrating...");
+        telemetry.update();
+
+        while (!isStopRequested() && !robot.IMU.isGyroCalibrated()){
+            sleep(50);
+            idle();
+        }
+        telemetry.addData("angle", getAngle());
+        telemetry.addData("Mode", "waiting for start");
+        telemetry.addData("imu calib status", robot.IMU.getCalibrationStatus().toString());
+        telemetry.update();
+
         waitForStart();
+        telemetry.addData("Mode", "running");
+        telemetry.update();
+
+        robot.Left_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Left_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.Right_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+        correction = checkDirection();
+
+        // telemetry.addData("1 imu heading", lastAngles.firstAngle);
+        telemetry.addData("2 global heading", globalAngle);
+        telemetry.addData("3 correction", correction);
+        telemetry.update();
+
+       // robot.Left_Top.setPower(-power + correction);
+        //robot.Left_Bottom.setPower(-power + correction);
+        //robot.Right_Bottom.setPower(-power);
+        //robot.Right_Top.setPower(-power);
+
         while (opModeIsActive()) {
-telemetry.addData("firstangle", angles.firstAngle);
+            // telemetry.addData("firstangle", angles.firstAngle);
 
             Find();
         }
@@ -141,7 +176,7 @@ telemetry.addData("firstangle", angles.firstAngle);
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
-                        /*if (updatedRecognitions.size() == 3) {
+                        if (updatedRecognitions.size() == 2) {
                             int goldMineralX = -1;
                             int silverMineral1X = -1;
                             int silverMineral2X = -1;
@@ -149,8 +184,9 @@ telemetry.addData("firstangle", angles.firstAngle);
                             int silverMineral1XRotation = 0;
                             int silverMineral2XRotation = 0;
 
+
+
                             for (Recognition recognition : updatedRecognitions) {
-                          //Recognition recognition;
                                 if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
                                     goldMineralX = (int) recognition.getLeft();
                                     goldMineralRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
@@ -162,7 +198,7 @@ telemetry.addData("firstangle", angles.firstAngle);
                                     telemetry.addData("Angle", savedAngle);
                                     telemetry.addData("firstAngle", angles.firstAngle);
                                     saved = goldMineralX;
-                                     telemetry.addData("gold mineral", saved);
+                                    telemetry.addData("gold mineral", saved);
                                 } else if (silverMineral1X == -1) {
                                     silverMineral1X = (int) recognition.getLeft();
                                     silverMineral1XRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
@@ -170,22 +206,33 @@ telemetry.addData("firstangle", angles.firstAngle);
                                     silverMineral2X = (int) recognition.getLeft();
                                     silverMineral2XRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
                                 }
-                           }
+                            }
 
                             telemetry.addData("Status", "Going to Mineral");
-                          //  GoToCoordinates(saved);
+                            //  GoToCoordinates(saved);
 
-                            if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
-                                if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
+                            if (goldMineralX != -1 && silverMineral1X != -1 ) {
+                                //if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                                //if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
+                                if (goldMineralX < silverMineral1X) {
                                     telemetry.addData("Gold Mineral Position", "Left");
-                                } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
-                                    telemetry.addData("Gold Mineral Position", "Right");
-                                } else {
+                                    rotate(-20,.3);
+                                    /*while (robot.IMU.angles.secondAngle < 20){
+
+                                    }*/
+                               // } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                                } else if (goldMineralX > silverMineral1X ) {
                                     telemetry.addData("Gold Mineral Position", "Center");
+                                    rotate(20,.3);
+                                } else {
+                                    telemetry.addData("Gold Mineral Position", "Right");
                                 }
                             }
-                        }*/
+                        }
+                        else if (updatedRecognitions.size() == 0){
 
+
+                        }
                         /*else if (updatedRecognitions.size() == 2) {
                             int goldMineralX = -1;
                             int silverMineral1X = -1;
@@ -239,30 +286,6 @@ telemetry.addData("firstangle", angles.firstAngle);
                                 telemetry.addData("Gold Mineral Status", "No Gold Mineral");
                             }
                         }*/
-                         //if (updatedRecognitions.size() == 1) {
-                            int goldMineralX = -1;
-                            int goldMineralRotation = 0;
-
-
-                            for (Recognition recognition : updatedRecognitions) {
-                                if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
-                                    //goldMineralX = (int) recognition.getLeft();
-                                    goldMineralX = (int) recognition.getLeft();
-                                    goldMineralRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
-                                    int savedCoordinates = goldMineralX;
-                                    int savedAngle = goldMineralRotation;
-                                    telemetry.addData("Status", "Going to Mineral");
-                                    telemetry.update();
-                                    GoToCoordinates(savedCoordinates,savedAngle);
-                                }
-                            }
-                            if (goldMineralX != -1) {
-                                telemetry.addData("Gold Mineral Status", "Gold Mineral Found");
-                            }
-                            else {
-                                telemetry.addData("Gold Mineral Status", "No Gold Mineral");
-                            }
-                        //}
                         telemetry.update();
                     }
                 }
@@ -316,22 +339,22 @@ telemetry.addData("firstangle", angles.firstAngle);
     public void GoToCoordinates(int Coordinates, int Angle){
         //String CRD = Double.toString(Coordinates);
         GoToAngle(Angle, power);
-        int newRBPosition = robot.Right_Bottom.getCurrentPosition() + (Coordinates);
-        int newLTPosition = robot.Left_Top.getCurrentPosition() + (Coordinates);
-        int newLBPosition = robot.Left_Bottom.getCurrentPosition() + (Coordinates);
-        int newRTPosition = robot.Right_Top.getCurrentPosition() + (Coordinates);
-        robot.Right_Bottom.setTargetPosition(newRBPosition);
-        robot.Left_Top.setTargetPosition(newLTPosition);
-        robot.Left_Bottom.setTargetPosition(newLBPosition);
-        robot.Right_Top.setTargetPosition(newRTPosition);
-        robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.Left_Top.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.Left_Bottom.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        int newRBPositionTop = robot.Right_Top.getCurrentPosition() + (Coordinates);
+        int newRBPositionBottom = robot.Right_Bottom.getCurrentPosition() + (Coordinates);
+        int newLTPositionBottom = robot.Left_Bottom.getCurrentPosition() + (Coordinates);
+        int newLTPositionTop = robot.Left_Top.getCurrentPosition() + (Coordinates);
+        robot.Right_Top.setTargetPosition(newRBPositionTop);
+        robot.Right_Bottom.setTargetPosition(newRBPositionBottom);
+        robot.Left_Bottom.setTargetPosition(newLTPositionBottom);
+        robot.Left_Top.setTargetPosition(newRBPositionTop);
         robot.Right_Top.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.Right_Bottom.setPower(-.6);
-        robot.Left_Top.setPower(-.6);
-        robot.Left_Bottom.setPower(-.6);
+        robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.Left_Bottom.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.Left_Top.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.Right_Top.setPower(-.6);
+        robot.Right_Bottom.setPower(-.6);
+        robot.Left_Bottom.setPower(-.6);
+        robot.Left_Top.setPower(-.6);
 
     }
 
@@ -405,7 +428,7 @@ telemetry.addData("firstangle", angles.firstAngle);
 
         }
     }*/
-public void GoToAngle(int Angle, double power){
+    public void GoToAngle(int Angle, double power){
     /*int newRBPosition = robot.Right_Bottom.getCurrentPosition() + (Angle);
     int newLTPosition = robot.Left_Top.getCurrentPosition() + (Angle);
     int newLBPosition = robot.Left_Bottom.getCurrentPosition() + (Angle);
@@ -422,92 +445,164 @@ public void GoToAngle(int Angle, double power){
     robot.Left_Top.setPower(-.6);
     robot.Left_Bottom.setPower(-.6);
     robot.Right_Top.setPower(-.6);*/
-
-    while (angles.secondAngle < Angle){
-        robot.Left_Bottom.setPower(power);
-        robot.Right_Bottom.setPower(-power);
-        robot.Left_Top.setPower(power);
-        robot.Right_Top.setPower(-power);
-
-    } while (angles.secondAngle > Angle){
-        robot.Left_Bottom.setPower(-power);
-        robot.Right_Bottom.setPower(power);
-        robot.Left_Top.setPower(-power);
-        robot.Right_Top.setPower(power);
-
-    } while (Angle == angles.secondAngle){
-        robot.Left_Bottom.setPower(0);
-        robot.Right_Bottom.setPower(0);
-        robot.Left_Top.setPower(0);
-        robot.Right_Top.setPower(0);
-    }
-
-    //while (angles.firstAngle < 45)
-}
-    void composeTelemetry() {
-
-// At the beginning of each telemetry update, grab a bunch of data
-// from the IMU that we will then display in separate lines.
-        telemetry.addAction(new Runnable() { @Override public void run()
-        {
-// Acquiring the angles is relatively expensive; we don't want
-// to do that in each of the three items that need that info, as that's
-// three times the necessary expense.
-            angles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-            gravity = imu.getGravity();
+        while (angles.firstAngle < Angle){
+            robot.Right_Top.setPower(-power);
+            robot.Right_Bottom.setPower(-power);
+            robot.Left_Bottom.setPower(power);
+            robot.Left_Top.setPower(power);
+        } while (angles.firstAngle > Angle){
+            robot.Right_Top.setPower(power);
+            robot.Right_Bottom.setPower(power);
+            robot.Left_Bottom.setPower(-power);
+            robot.Left_Top.setPower(-power);
+        } while (Angle == angles.firstAngle){
+            robot.Right_Top.setPower(0);
+            robot.Right_Bottom.setPower(0);
+            robot.Left_Bottom.setPower(0);
+            robot.Left_Top.setPower(0);
         }
-        });
-
-        telemetry.addLine()
-                .addData("status", new Func<String>() {
-                    @Override public String value() {
-                        return imu.getSystemStatus().toShortString();
-                    }
-                })
-                .addData("calib", new Func<String>() {
-                    @Override public String value() {
-                        return imu.getCalibrationStatus().toString();
-                    }
-                });
-
-        telemetry.addLine()
-                .addData("heading", new Func<String>() {
-                    @Override public String value() {
-                        return formatAngle(angles.angleUnit, angles.firstAngle);
-                    }
-                })
-                .addData("roll", new Func<String>() {
-                    @Override public String value() {
-                        return formatAngle(angles.angleUnit, angles.secondAngle);
-                    }
-                })
-                .addData("pitch", new Func<String>() {
-                    @Override public String value() {
-                        return formatAngle(angles.angleUnit, angles.thirdAngle);
-                    }
-                });
-
-        telemetry.addLine()
-                .addData("grvty", new Func<String>() {
-                    @Override public String value() {
-                        return gravity.toString();
-                    }
-                })
-                .addData("mag", new Func<String>() {
-                    @Override public String value() {
-                        return String.format(Locale.getDefault(), "%.3f",
-                                Math.sqrt(gravity.xAccel*gravity.xAccel
-                                        + gravity.yAccel*gravity.yAccel
-                                        + gravity.zAccel*gravity.zAccel));
-                    }
-                });
-    }
-    String formatAngle(AngleUnit angleUnit, double angle) {
-        return formatDegrees(AngleUnit.DEGREES.fromUnit(angleUnit , angle));
     }
 
-    String formatDegrees(double degrees){
-        return String.format(Locale.getDefault(), "%.1f", AngleUnit.DEGREES.normalize(degrees));
+    private void resetAngle()
+    {
+        lastAngles = robot.IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        globalAngle = 0;
     }
+
+
+
+
+
+
+
+    private double getAngle()
+    {
+        // We experimentally determined the Z axis is the axis we want to use for heading angle.
+        // We have to process the angle because the imu works in euler angles so the Z axis is
+        // returned as 0 to +180 or 0 to -180 rolling back to -179 or +179 when rotation passes
+        // 180 degrees. We detect this transition and track the total cumulative angle of rotation.
+
+        Orientation angles = robot.IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
+
+        double deltaAngle = angles.firstAngle - lastAngles.firstAngle;
+
+        if (deltaAngle < -180)
+            deltaAngle += 360;
+        else if (deltaAngle > 180)
+            deltaAngle -= 360;
+
+        globalAngle += deltaAngle;
+
+        lastAngles = angles;
+
+        return globalAngle;
+    }
+
+
+
+
+
+
+
+
+
+
+    private double checkDirection()
+    {
+        // The gain value determines how sensitive the correction is to direction changes.
+        // You will have to experiment with your robot to get small smooth direction changes
+        // to stay on a straight line.
+        double correction, angle, gain = .10;
+
+        angle = getAngle();
+
+        if (angle == 0)
+            correction = 0;             // no adjustment.
+        else
+            correction = -angle;        // reverse sign of angle for correction.
+
+        correction = correction * gain;
+
+        return correction;
+    }
+
+
+
+
+
+
+
+
+
+
+    private void rotate(int degrees, double power)
+    {
+        double  leftPower, rightPower;
+
+        // restart imu movement tracking.
+        resetAngle();
+
+        // getAngle() returns + when rotating counter clockwise (left) and - when rotating
+        // clockwise (right).
+
+        if (degrees < 0)
+        {   // turn right.
+            leftPower = -power;
+            rightPower = power;
+        }
+        else if (degrees > 0)
+        {   // turn left.
+            leftPower = power;
+            rightPower = -power;
+        }
+        else return;
+
+        // set power to rotate.
+        robot.Right_Top.setPower(rightPower);
+        robot.Right_Bottom.setPower(rightPower);
+        robot.Left_Bottom.setPower(leftPower);
+        robot.Left_Top.setPower(leftPower);
+
+        // rotate until turn is completed.
+        if (degrees < 0)
+        {
+            // On right turn we have to get off zero first.
+            //while (opModeIsActive() && getAngle() == 0) {}
+
+            while (opModeIsActive() && getAngle() > degrees)
+            {
+
+                robot.Right_Top.setPower(-power);
+                robot.Right_Bottom.setPower(-power);
+                robot.Left_Bottom.setPower(power);
+                robot.Left_Top.setPower(power);
+
+            }
+        }
+        else {  // left turn.
+            while (opModeIsActive() && getAngle() < degrees) {
+
+                robot.Right_Top.setPower(power);
+                robot.Right_Bottom.setPower(power);
+                robot.Left_Bottom.setPower(-power);
+                robot.Left_Top.setPower(-power);
+
+            }
+        }
+
+        // turn the motors off.
+        robot.Right_Top.setPower(0);
+        robot.Right_Bottom.setPower(0);
+        robot.Left_Bottom.setPower(0);
+        robot.Left_Top.setPower(0);
+
+        // wait for rotation to stop.
+        sleep(1000);
+
+        // reset angle tracking on new heading.
+        resetAngle();
+    }
+
 
 }

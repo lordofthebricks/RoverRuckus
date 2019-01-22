@@ -97,6 +97,5 @@ public class HowToFindMinerals extends LinearOpMode
 
 
 }
-/* R.I.P. JOHN'S LIFE, you too michael*/
 
 

@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "AutoBlueDepotCraterPause")
-@Disabled
+
 public class AutoBlueDepotCraterPause extends LinearOpMode
 {
 

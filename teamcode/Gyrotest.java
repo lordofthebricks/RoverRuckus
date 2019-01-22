@@ -19,6 +19,7 @@ import com.qualcomm.robotcore.util.Range;
 import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 @Autonomous(name = "gyrotest", group = "John")
+@Disabled
 public class Gyrotest extends LinearOpMode
 {
 

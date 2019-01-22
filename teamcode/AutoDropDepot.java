@@ -13,6 +13,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 @Autonomous(name ="AutoDropDepot", group ="Antonio")
+@Disabled
 public class AutoDropDepot extends LinearOpMode
 {
 

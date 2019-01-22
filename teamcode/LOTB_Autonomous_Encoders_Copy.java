@@ -1,11 +1,13 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 @Autonomous(name = "EncoderTest2copy")
+@Disabled
 public class LOTB_Autonomous_Encoders_Copy extends LinearOpMode
 {
     static final double     COUNTS_PER_MOTOR_REV    = 1120 ;    // eg: DC Motor Encoder

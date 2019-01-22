@@ -8,7 +8,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-@TeleOp(name = "Teleop")
+@TeleOp(name = "LOTBTeleop")
 @Disabled
 public class LOTBTeleop extends LinearOpMode
 {

@@ -11,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import org.firstinspires.ftc.robotcore.external.Telemetry;
 
 @TeleOp(name = "SERVO TEST")
-//@Disabled
+@Disabled
 public class NewLordOfTheBricksTeleopTest extends LinearOpMode
 {
     LOTBHardware robot = new LOTBHardware();
