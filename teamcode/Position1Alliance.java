@@ -94,10 +94,10 @@ public class Position1Alliance extends LinearOpMode
             sleep(50);
             idle();
         }
-        telemetry.addData("angle", getAngle());
-        telemetry.addData("Mode", "waiting for start");
-        telemetry.addData("imu calib status", robot.IMU.getCalibrationStatus().toString());
-        telemetry.update();
+        //telemetry.addData("angle", getAngle());
+        //telemetry.addData("Mode", "waiting for start");
+        //telemetry.addData("imu calib status", robot.IMU.getCalibrationStatus().toString());
+        //telemetry.update();
 
         waitForStart();
         telemetry.addData("Mode", "running");
@@ -108,12 +108,12 @@ public class Position1Alliance extends LinearOpMode
         robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.Right_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        correction = checkDirection();
+        //correction = checkDirection();
 
         // telemetry.addData("1 imu heading", lastAngles.firstAngle);
-        telemetry.addData("2 global heading", globalAngle);
-        telemetry.addData("3 correction", correction);
-        telemetry.update();
+        //telemetry.addData("2 global heading", globalAngle);
+        //telemetry.addData("3 correction", correction);
+        //telemetry.update();
 
        // robot.Left_Top.setPower(-power + correction);
         //robot.Left_Bottom.setPower(-power + correction);
@@ -591,12 +591,12 @@ runtime.reset();
         }
     }
 
-    private void resetAngle()
+    /*private void resetAngle()
     {
         lastAngles = robot.IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         globalAngle = 0;
-    }
+    }*/
 
 
 
@@ -604,7 +604,7 @@ runtime.reset();
 
 
 
-    private double getAngle()
+    /*private double getAngle()
     {
         // We experimentally determined the Z axis is the axis we want to use for heading angle.
         // We have to process the angle because the imu works in euler angles so the Z axis is
@@ -625,7 +625,7 @@ runtime.reset();
         lastAngles = angles;
 
         return globalAngle;
-    }
+    }*/
 
 
 
@@ -636,7 +636,7 @@ runtime.reset();
 
 
 
-    private double checkDirection()
+    /*private double checkDirection()
     {
         // The gain value determines how sensitive the correction is to direction changes.
         // You will have to experiment with your robot to get small smooth direction changes
@@ -653,7 +653,7 @@ runtime.reset();
         correction = correction * gain;
 
         return correction;
-    }
+    }*/
 
 
 
@@ -664,7 +664,7 @@ runtime.reset();
 
 
 
-    private void rotate(int degrees, double power)
+    /*private void rotate(int degrees, double power)
     {
         double  leftPower, rightPower;
 
@@ -730,7 +730,7 @@ runtime.reset();
 
         // reset angle tracking on new heading.
         resetAngle();
-    }
+    }*/
 
     public void encoderDrive(double speed,
                              double Left_Bottom_Inches,

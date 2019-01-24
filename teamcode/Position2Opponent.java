@@ -108,12 +108,12 @@ public class Position2Opponent extends LinearOpMode
         robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.Right_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        correction = checkDirection();
+        //correction = checkDirection();
 
         // telemetry.addData("1 imu heading", lastAngles.firstAngle);
-        telemetry.addData("2 global heading", globalAngle);
-        telemetry.addData("3 correction", correction);
-        telemetry.update();
+        //telemetry.addData("2 global heading", globalAngle);
+        //telemetry.addData("3 correction", correction);
+        //telemetry.update();
 
         // robot.Left_Top.setPower(-power + correction);
         //robot.Left_Bottom.setPower(-power + correction);
@@ -265,13 +265,13 @@ public class Position2Opponent extends LinearOpMode
                                 //if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                                 if (goldMineralX < silverMineral1X) {
                                     telemetry.addData("Gold Mineral Position", "Left");
-                                    encoderDrive(1,18,18,18,18,3);
-                                    encoderDrive(.9, 20,-20,20,-20,3);
-                                    encoderDrive(.9, 7,7,7,7,3);
-                                    encoderDrive(.9, 10,-10,10,-10,3);
-                                    encoderDrive(.9, 7,-7,-7,7,3);
-                                    encoderDrive(.9, -50,-50,-50,-50,3);
-                                    encoderDrive(.9, -50,50,50,-50,3);
+                                    encoderDrive(1,17,17,17,17,3);
+                                    encoderDrive(1, 20,-20,20,-20,3);
+                                    encoderDrive(1, 7,7,7,7,3);
+                                    encoderDrive(1, 25,-25,25,-25,4);
+                                    encoderDrive(1, 8,-8,-8,8,3);
+                                    encoderDrive(1, -60,-60,-60,-60,3);
+                                    encoderDrive(1, -45,45,45,-45,3);
 
                                     //encoderDrive(.4,-3.72,3.72,3.72,-3.72, 3);
                                     //encoderDrive(.4,38,38,38,38,3);
@@ -288,11 +288,12 @@ public class Position2Opponent extends LinearOpMode
                                     encoderDrive(.9, -3,3,-3,3,5);
                                     encoderDrive(1, -30,-30,-30,-30,5);
                                     encoderDrive(.9, -45,45,45,-45,5);*/
+                                    encoderDrive(.9, 5,5,5,5,3);
+                                    encoderDrive(.9, 25,-25,25,-25,5);
                                     encoderDrive(.9, 3,3,3,3,3);
                                     encoderDrive(.9, 30,-30,30,-30,5);
-                                    encoderDrive(.9, 3,3,3,3,3);
-                                    encoderDrive(.9, 30,-30,30,-30,5);
-                                    encoderDrive(.9, -23,23,23,-23,3);
+                                    encoderDrive(.9, -27,27,27,-27,3);
+                                    encoderDrive(.9, 20,20,20,20,5);
                                     /* encoderDrive(.9, 5,5,5,5,3);
                                     encoderDrive(.9, -3,-3,-3,-3,3);
                                     encoderDrive(.9, -20,20,-20,20,5);
@@ -304,18 +305,21 @@ public class Position2Opponent extends LinearOpMode
                                     // encoderDrive(.4,-114,114,-114,114,3);
 
                                     robot.Elbow.setPosition(.3);
+
+                                    encoderDrive(.9, 10,10,10,10,5);
+
                                     //rotate(-20,.3);
                                     /*while (robot.IMU.angles.secondAngle < 20){*/
                                     // }
                                     // } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                                 } else if (goldMineralX > silverMineral1X ) {
                                     telemetry.addData("Gold Mineral Position", "Center");
-                                    encoderDrive(.9,25,25,25,25,3);
-                                    encoderDrive(.9, -7,-7,-7,-7,5);
-                                    encoderDrive(.9, 25,-25,25,-25,5);
-                                    encoderDrive(.9,17,-17,-17,17,3);
-                                    encoderDrive(.9,-25,-25,-25,-25,3);
-                                    encoderDrive(.9,-50,50,50,-50,3);
+                                    encoderDrive(1,25,25,25,25,3);
+                                    encoderDrive(1, -7,-7,-7,-7,5);
+                                    encoderDrive(.9, 55,-55,55,-55,5);
+                                    encoderDrive(.9,8,-8,-8,8,3);
+                                    encoderDrive(1,-47,-47,-47,-47,3);
+                                    encoderDrive(1, -45,45,45,-45,3);
                                     // encoderDrive(.4,6,6,6,6,3);
                                     //encoderDrive(.9,12,12,12,12,3);
                                     // encoderDrive(.4, 5,-5,-5,5,3);
@@ -326,11 +330,16 @@ public class Position2Opponent extends LinearOpMode
                                     }
                                     robot.Dumper.setPosition(.75);
                                     runtime.reset();
+                                    encoderDrive(1, 25,-25,25,-25,5);
                                     encoderDrive(.9, 3,3,3,3,3);
+                                    encoderDrive(1, 30,-30,30,-30,5);
+                                    encoderDrive(1, -27,27,27,-27,3);
+                                    encoderDrive(1, 27,27,27,27,5);
+                                    /*encoderDrive(.9, 3,3,3,3,3);
                                     encoderDrive(.9, 30,-30,30,-30,5);
                                     encoderDrive(.9, 3,3,3,3,3);
                                     encoderDrive(.9, 30,-30,30,-30,5);
-                                    encoderDrive(.9, -23,23,23,-23,3);
+                                    encoderDrive(.9, -23,23,23,-23,3);*/
 
                                     //encoderDrive(.9,-35,-35,-35,-35,6);
                                     //Right top is set negative, Right bottom is set postive, Left top is set positive, Left bottom is set negative
@@ -633,12 +642,12 @@ public class Position2Opponent extends LinearOpMode
         }
     }
 
-    private void resetAngle()
+    /*private void resetAngle()
     {
         lastAngles = robot.IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         globalAngle = 0;
-    }
+    }*/
 
 
 
@@ -646,7 +655,7 @@ public class Position2Opponent extends LinearOpMode
 
 
 
-    private double getAngle()
+    /*private double getAngle()
     {
         // We experimentally determined the Z axis is the axis we want to use for heading angle.
         // We have to process the angle because the imu works in euler angles so the Z axis is
@@ -667,7 +676,7 @@ public class Position2Opponent extends LinearOpMode
         lastAngles = angles;
 
         return globalAngle;
-    }
+    }*/
 
 
 
@@ -678,7 +687,7 @@ public class Position2Opponent extends LinearOpMode
 
 
 
-    private double checkDirection()
+    /*private double checkDirection()
     {
         // The gain value determines how sensitive the correction is to direction changes.
         // You will have to experiment with your robot to get small smooth direction changes
@@ -695,7 +704,7 @@ public class Position2Opponent extends LinearOpMode
         correction = correction * gain;
 
         return correction;
-    }
+    }*/
 
 
 
@@ -706,7 +715,7 @@ public class Position2Opponent extends LinearOpMode
 
 
 
-    private void rotate(int degrees, double power)
+    /*private void rotate(int degrees, double power)
     {
         double  leftPower, rightPower;
 
@@ -772,7 +781,7 @@ public class Position2Opponent extends LinearOpMode
 
         // reset angle tracking on new heading.
         resetAngle();
-    }
+    }*/
 
     public void encoderDrive(double speed,
                              double Left_Bottom_Inches,

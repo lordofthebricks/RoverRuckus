@@ -77,11 +77,11 @@ public class Position1Opponent extends LinearOpMode
         //imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
         // angles = imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+       /* BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.mode                = BNO055IMU.SensorMode.IMU;
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.loggingEnabled      = false;
+        parameters.loggingEnabled      = false;*/
 
         robot.init(hardwareMap);
 
@@ -108,12 +108,12 @@ public class Position1Opponent extends LinearOpMode
         robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.Right_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        correction = checkDirection();
+        //correction = checkDirection();
 
         // telemetry.addData("1 imu heading", lastAngles.firstAngle);
-        telemetry.addData("2 global heading", globalAngle);
-        telemetry.addData("3 correction", correction);
-        telemetry.update();
+        //telemetry.addData("2 global heading", globalAngle);
+        //telemetry.addData("3 correction", correction);
+        //telemetry.update();
 
         // robot.Left_Top.setPower(-power + correction);
         //robot.Left_Bottom.setPower(-power + correction);
@@ -611,12 +611,12 @@ public class Position1Opponent extends LinearOpMode
         }
     }
 
-    private void resetAngle()
+    /*private void resetAngle()
     {
         lastAngles = robot.IMU.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         globalAngle = 0;
-    }
+    }*/
 
 
 
@@ -624,7 +624,7 @@ public class Position1Opponent extends LinearOpMode
 
 
 
-    private double getAngle()
+    /*private double getAngle()
     {
         // We experimentally determined the Z axis is the axis we want to use for heading angle.
         // We have to process the angle because the imu works in euler angles so the Z axis is
@@ -645,7 +645,7 @@ public class Position1Opponent extends LinearOpMode
         lastAngles = angles;
 
         return globalAngle;
-    }
+    }*/
 
 
 
@@ -656,7 +656,7 @@ public class Position1Opponent extends LinearOpMode
 
 
 
-    private double checkDirection()
+    /*private double checkDirection()
     {
         // The gain value determines how sensitive the correction is to direction changes.
         // You will have to experiment with your robot to get small smooth direction changes
@@ -673,7 +673,7 @@ public class Position1Opponent extends LinearOpMode
         correction = correction * gain;
 
         return correction;
-    }
+    }*/
 
 
 
@@ -684,7 +684,7 @@ public class Position1Opponent extends LinearOpMode
 
 
 
-    private void rotate(int degrees, double power)
+    /*private void rotate(int degrees, double power)
     {
         double  leftPower, rightPower;
 
@@ -750,7 +750,7 @@ public class Position1Opponent extends LinearOpMode
 
         // reset angle tracking on new heading.
         resetAngle();
-    }
+    }*/
 
     public void encoderDrive(double speed,
                              double Left_Bottom_Inches,
