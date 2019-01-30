@@ -20,7 +20,12 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
     LOTBHardware robot = new LOTBHardware();
     public static int Move_Forward = 1;
     public static int Move_Backward = -1;
-
+    public double LED_YELLOW = .5;
+    public double LED_WHITE = .69;
+    public double LED_RED = .17;
+    public double LED_GREEN = .08;
+    public double LED_BLUE = .345;
+    public double LED_NONE = .82;
     RevBlinkinLedDriver blinkinLedDriver;
 
     Telemetry.Item patternName;
@@ -31,6 +36,7 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
     public void runOpMode() throws InterruptedException{
         displayKind = Blinky.DisplayKind.MANUAL;
         robot.init(hardwareMap);
+        robot.LEDServo.setPosition(.82);
         waitForStart();
 
         while (opModeIsActive()){
@@ -41,7 +47,7 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             //telemetry.addData("")
 
             // This is for reading in both color/ distance sensors
-       /* if ((robot.RightDistanceSensor.getDistance(DistanceUnit.INCH)) <= 2.5 && (robot.LeftDistanceSensor.getDistance(DistanceUnit.INCH)) <= 2.5) {
+        if ((robot.RightDistanceSensor.getDistance(DistanceUnit.INCH)) <= 2.5 && (robot.LeftDistanceSensor.getDistance(DistanceUnit.INCH)) <= 2.5) {
 
             telemetry.addData("Distance (in)",
                     String.format(Locale.US, "%.02f", robot.LeftDistanceSensor.getDistance(DistanceUnit.INCH)));
@@ -60,23 +66,23 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             telemetry.addData("Yellow", robot.LeftColorSensor.green() - robot.LeftColorSensor.blue());
             telemetry.update();
 
-            if (robot.RightColorSensor.equals(Color.YELLOW) && robot.LeftColorSensor.equals(Color.YELLOW)) {
+            if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue())  && robot.LeftColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue())) {
                 telemetry.addData("Color", "All Yellow");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.YELLOW);
+                robot.LEDServo.setPosition(LED_YELLOW);
             } else if (robot.RightColorSensor.equals(Color.YELLOW) && robot.LeftColorSensor.equals(Color.WHITE)) {
                 telemetry.addData("Color", "Right Yellow, Left White");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.CONFETTI);
+                robot.LEDServo.setPosition(LED_RED);
             } else if (robot.RightColorSensor.equals(Color.WHITE) && robot.LeftColorSensor.equals(Color.YELLOW)) {
                 telemetry.addData("Color", "Right White, Left Yellow");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.LAWN_GREEN);
+                robot.LEDServo.setPosition(LED_RED);
             } else if (robot.RightColorSensor.equals(Color.WHITE) && robot.LeftColorSensor.equals(Color.WHITE)) {
                 telemetry.addData("Color", "All White");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLUE);
-            }
+                robot.LEDServo.setPosition(LED_WHITE);
+            } //else robot.LEDServo.setPosition(1);
 
         }
             // This is for reading the right color sensor
@@ -94,11 +100,11 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             if (robot.RightColorSensor.equals(Color.YELLOW)) {
                 telemetry.addData("Color Right", "Yellow");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.BLACK);
+                robot.LEDServo.setPosition(LED_GREEN);
             } else if (robot.RightColorSensor.equals(Color.WHITE)) {
                 telemetry.addData("Color Right", "White");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_OCEAN_PALETTE);
+                robot.LEDServo.setPosition(LED_BLUE);
             }
         }
         // This is for reading the left color sensor
@@ -116,19 +122,19 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             if (robot.LeftColorSensor.equals(Color.YELLOW)) {
                 telemetry.addData("Color Left", "Yellow");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.BEATS_PER_MINUTE_FOREST_PALETTE);
+                robot.LEDServo.setPosition(LED_GREEN);
             } else if (robot.LeftColorSensor.equals(Color.WHITE)) {
                 telemetry.addData("Color Left", "White");
                 telemetry.update();
-                robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.BREATH_RED);
+                robot.LEDServo.setPosition(LED_BLUE);
             }
         }
         // This is for reading No Minerals
         else {
             telemetry.addData("No Minerals", "Still No Minerals!!!!!");
             telemetry.update();
-            robot.Blinky.setPattern(RevBlinkinLedDriver.BlinkinPattern.ORANGE);
-        }*/
+            robot.LEDServo.setPosition(LED_NONE);
+        }
 
             /*if (robot.RightColorSensor.equals(Color.YELLOW)) {
                 telemetry.addData("Color", "Yellow");
