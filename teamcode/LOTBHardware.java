@@ -24,6 +24,7 @@ public class LOTBHardware {
     public DcMotor Shoulder;
 
     public Servo Dumper;
+    public Servo LEDServo;
     public RevBlinkinLedDriver Blinky;
     public ColorSensor RightColorSensor;
     public ColorSensor LeftColorSensor;
@@ -69,6 +70,7 @@ public class LOTBHardware {
         Shoulder = hwMap.get(DcMotor.class, "Shoulder");
         Elbow = hwMap.get(Servo.class, "Elbow");
         Intake = hwMap.get(CRServo.class, "Intake");
+        LEDServo = hwMap.get(Servo.class,"LEDServo");
 
         Dumper = hwMap.get(Servo.class, "Dumpee");
         Blinky = hwMap.get(RevBlinkinLedDriver.class, "Blinky");
