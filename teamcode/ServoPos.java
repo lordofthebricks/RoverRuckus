@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 @TeleOp(name = "ServoPos")
+@Disabled
 public class ServoPos extends LinearOpMode{
     LOTBHardware robot = new LOTBHardware();
     public static double First = 0.0;
@@ -29,27 +30,27 @@ robot.init(hardwareMap);
         telemetry.update();
         while (opModeIsActive()){
             if (gamepad1.a){
-                robot.LEDServo.setPosition(First);
+                robot.Dumper.setPosition(First);
             } else if (gamepad1.x){
-                robot.LEDServo.setPosition(Second);
+                robot.Dumper.setPosition(Second);
             } else if (gamepad1.y){
-                robot.LEDServo.setPosition(Third);
+                robot.Dumper.setPosition(Third);
             } else if (gamepad1.b){
-                robot.LEDServo.setPosition(Fourth);
+                robot.Dumper.setPosition(Fourth);
             } else if (gamepad1.right_trigger == 1){
-                robot.LEDServo.setPosition(Fifth);
+                robot.Dumper.setPosition(Fifth);
             } else if (gamepad1.right_bumper){
-                robot.LEDServo.setPosition(Sixth);
+                robot.Dumper.setPosition(Sixth);
             } else if (gamepad1.left_trigger == 1){
-                robot.LEDServo.setPosition(Seventh);
+                robot.Dumper.setPosition(Seventh);
             } else if (gamepad1.left_bumper){
-                robot.LEDServo.setPosition(Eighth);
+                robot.Dumper.setPosition(Eighth);
             } else if (gamepad1.dpad_right){
-                robot.LEDServo.setPosition(Ninth);
+                robot.Dumper.setPosition(Ninth);
             } else if (gamepad1.dpad_down){
-                robot.LEDServo.setPosition(Tenth);
+                robot.Dumper.setPosition(Tenth);
             } else if (gamepad1.dpad_left){
-                robot.LEDServo.setPosition(Eleventh);
+                robot.Dumper.setPosition(Eleventh);
             }
         }
     }
