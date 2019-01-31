@@ -221,6 +221,231 @@ public class Position2AllianceCopy extends LinearOpMode
                     List<Recognition> updatedRecognitions = tfod.getUpdatedRecognitions();
                     if (updatedRecognitions != null) {
                         telemetry.addData("# Object Detected", updatedRecognitions.size());
+
+                        if (updatedRecognitions.size() < 1){
+
+
+
+                            for (Recognition recognition : updatedRecognitions) {
+                                telemetry.addData("Gold Mineral Position", "Center");
+                                encoderDrive(.9,25,25,25,25,3);
+                                encoderDrive(.9, -9,-9,-9,-9,5);
+                                encoderDrive(.9, 50,-50,50,-50,7);
+                                encoderDrive(.9,9,-9,-9,9,3);
+                                encoderDrive(.9,-56,-56,-56,-56,3);
+                                encoderDrive(.9,-45,45,45,-45,3);
+                                // encoderDrive(.4,6,6,6,6,3);
+                                //encoderDrive(.9,12,12,12,12,3);
+                                // encoderDrive(.4, 5,-5,-5,5,3);
+                                // encoderDrive(.4, 14,14,14,14,3);
+                                // encoderDrive(.4,8,-8,-8,8,1);
+                                while (runtime.seconds() < 3){
+                                    robot.Dumper.setPosition(.175);
+                                }
+                                robot.Dumper.setPosition(.75);
+                                runtime.reset();
+                                encoderDrive(.9,-60,-60,-60,-60,3);
+                                encoderDrive(.9, -45,45,45,-45,3);
+
+                                //encoderDrive(.9,-35,-35,-35,-35,6);
+                                //Right top is set negative, Right bottom is set postive, Left top is set positive, Left bottom is set negative
+                                //encoderDrive(.7, 3, -3, 3,-3, 1);
+                                //encoderDrive(.9, 47,-47,47,-47,5);
+                                //encoderDrive(.9,-31,31,31,-31,3);
+                                //encoderDrive(.9,7,7,7,7,3);
+                                //encoderDrive(.7,-30,-30,-30,-30,4);
+                                //encoderDrive(.5,-7, 7, -7, 7, 3);
+                                //encoderDrive(.4,46.5,-46.5,-46.5,46.5,5);
+                                //encoderDrive(.9, 15,15,15,15,3);
+                                //encoderDrive(.4, 7,0,0,7,3);
+
+                                robot.Elbow.setPosition(.3);
+
+                                encoderDrive(.9, 10,10,10,10,3);
+
+                                //TEST  encoderDrive(.4,90,90,90,90,3);
+                                //encoderDrive(.4,-6,6,6,-6,3);
+                                //encoderDrive(.4,);
+                                //rotate(20,.3);
+
+                            }
+                        }
+
+                        if (updatedRecognitions.size() == 1) {
+                            int goldMineralX = -1;
+                            int silverMineral1X = -1;
+                            int silverMineral2X = -1;
+                            int goldMineralRotation = 0;
+                            int silverMineral1XRotation = 0;
+                            int silverMineral2XRotation = 0;
+
+
+                            for (Recognition recognition : updatedRecognitions) {
+                                if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                                    goldMineralX = (int) recognition.getLeft();
+                                    //* // goldMineralRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
+                                    int savedCoordinates = goldMineralX;
+                                    //int savedAngle = goldMineralRotation;
+                                    //GoToCoordinates(savedCoordinates,savedAngle);
+                                    // GoToAngle(savedAngle,power);
+                                    telemetry.addData("Coordinates", savedCoordinates);
+                                    //telemetry.addData("Angle", savedAngle);*//*
+                                    //telemetry.addData("firstAngle", angles.firstAngle);
+                                    //saved = goldMineralX;
+                                    //telemetry.addData("gold mineral", saved);
+                                } else if (silverMineral1X == -1) {
+                                    silverMineral1X = (int) recognition.getLeft();
+                                    silverMineral1XRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
+                                } else {
+                                    silverMineral2X = (int) recognition.getLeft();
+                                    silverMineral2XRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
+                                }
+                            }
+
+                            telemetry.addData("Status", "Going to Mineral");
+                            //  GoToCoordinates(saved);
+
+
+
+                            if (goldMineralX != -1) {
+                                telemetry.addData("Minearals ", "Not equal to -1");
+                                //if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                                //if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
+                                if (goldMineralX < silverMineral1X) {
+                                    telemetry.addData("Gold Mineral Position", "Left");
+                                    encoderDrive(1,18,18,18,18,3);
+                                    encoderDrive(1, 20,-20,20,-20,3);
+                                    encoderDrive(1, 7,7,7,7,3);
+                                    encoderDrive(1, 22,-22,22,-22,4);
+                                    encoderDrive(1, 8,-8,-8,8,3);
+                                    encoderDrive(1, -60,-60,-60,-60,3);
+                                    encoderDrive(1, -45,45,45,-45,3);
+
+                                    //encoderDrive(.4,-3.72,3.72,3.72,-3.72, 3);
+                                    //encoderDrive(.4,38,38,38,38,3);
+                                    //encoderDrive(.4, 10,10,10,10,3);
+                                    // encoderDrive(.4,5,-5,-5,5,3);
+                                    //encoderDrive(.4,9.2,-9.2,-9.2,9.2,3);
+                                    //encoderDrive(.4,16,16,16,16,3);
+                                    while (runtime.seconds() < 3){
+                                        robot.Dumper.setPosition(.175);
+                                    }
+                                    robot.Dumper.setPosition(.75);
+                                    runtime.reset();/*
+                                    encoderDrive(1, -30,-30,-30,-30,5);
+                                    encoderDrive(.9, -3,3,-3,3,5);
+                                    encoderDrive(1, -30,-30,-30,-30,5);
+                                    encoderDrive(.9, -45,45,45,-45,5);*/
+                                    //encoderDrive(1, -60,-60,-60,-60,7);
+                                    encoderDrive(1, -60,-60,-60,-60,7);
+                                    // encoderDrive(1, -45,45,45,-45,5);
+                                    encoderDrive(1, -45,45,45,-45,5);
+
+                                    /* encoderDrive(.9, 5,5,5,5,3);
+                                    encoderDrive(.9, -3,-3,-3,-3,3);
+                                    encoderDrive(.9, -20,20,-20,20,5);
+                                    encoderDrive(.9, 2,2,2,2,3);
+                                    encoderDrive(.9, -60,60,-60,60,7);
+                                    encoderDrive(.9, -5,-5,-5,-5,5);
+                                    encoderDrive(.9, 22,-22,-22,22,5);
+                                    encoderDrive(.9, 4,4,4,4,3);*/
+                                    // encoderDrive(.4,-114,114,-114,114,3);
+
+                                    robot.Elbow.setPosition(.3);
+                                    //rotate(-20,.3);
+                                    /*while (robot.IMU.angles.secondAngle < 20){*/
+                                    // }
+                                    // } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                                } else if (goldMineralX > silverMineral1X) {
+                                    telemetry.addData("Gold Mineral Position", "Center");
+                                    encoderDrive(.9,25,25,25,25,3);
+                                    encoderDrive(.9, -9,-9,-9,-9,5);
+                                    encoderDrive(.9, 50,-50,50,-50,7);
+                                    encoderDrive(.9,9,-9,-9,9,3);
+                                    encoderDrive(.9,-56,-56,-56,-56,3);
+                                    encoderDrive(.9,-45,45,45,-45,3);
+                                    // encoderDrive(.4,6,6,6,6,3);
+                                    //encoderDrive(.9,12,12,12,12,3);
+                                    // encoderDrive(.4, 5,-5,-5,5,3);
+                                    // encoderDrive(.4, 14,14,14,14,3);
+                                    // encoderDrive(.4,8,-8,-8,8,1);
+                                    while (runtime.seconds() < 3){
+                                        robot.Dumper.setPosition(.175);
+                                    }
+                                    robot.Dumper.setPosition(.75);
+                                    runtime.reset();
+                                    encoderDrive(.9,-60,-60,-60,-60,3);
+                                    encoderDrive(.9, -45,45,45,-45,3);
+
+                                    //encoderDrive(.9,-35,-35,-35,-35,6);
+                                    //Right top is set negative, Right bottom is set postive, Left top is set positive, Left bottom is set negative
+                                    //encoderDrive(.7, 3, -3, 3,-3, 1);
+                                    //encoderDrive(.9, 47,-47,47,-47,5);
+                                    //encoderDrive(.9,-31,31,31,-31,3);
+                                    //encoderDrive(.9,7,7,7,7,3);
+                                    //encoderDrive(.7,-30,-30,-30,-30,4);
+                                    //encoderDrive(.5,-7, 7, -7, 7, 3);
+                                    //encoderDrive(.4,46.5,-46.5,-46.5,46.5,5);
+                                    //encoderDrive(.9, 15,15,15,15,3);
+                                    //encoderDrive(.4, 7,0,0,7,3);
+
+                                    robot.Elbow.setPosition(.3);
+
+                                    encoderDrive(.9, 10,10,10,10,3);
+
+                                    //TEST  encoderDrive(.4,90,90,90,90,3);
+                                    //encoderDrive(.4,-6,6,6,-6,3);
+                                    //encoderDrive(.4,);
+                                    //rotate(20,.3);
+                                }
+                            }
+                            else {
+                                telemetry.addData("Gold Mineral Position", "Right");
+                                encoderDrive(1,16,16,16,16,3);
+                                encoderDrive(1, -20,20,-20,20,3);
+                                encoderDrive(.9, 7,7,7,7,3);
+                                encoderDrive(.9, -7,-7,-7,-7,3);
+                                //encoderDrive(.9, 15,15,15,15,3);
+                                encoderDrive(.9, 77,-77,77,-7,5);
+                                encoderDrive(.9, 7,-7,-7,7,5);
+                                encoderDrive(.9, -56,-56,-56,-56,5);
+                                encoderDrive(.9, 45,-45,-45,45,5);
+
+
+                                // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
+                                // encoderDrive(.4,38,38,38,38,3);
+                                // encoderDrive(.4,-7.44,7.44,7.44,-7.44,3);
+                                // encoderDrive(.4,18,18,18,18,3);
+
+                                while (runtime.seconds() < 3){
+                                    robot.Dumper.setPosition(.175);
+                                }
+                                robot.Dumper.setPosition(.75);
+                                runtime.reset();
+                                /*
+                                encoderDrive(.9, -3,3,3,-3,3);
+                                encoderDrive(.9, 4,4,4,4,3);
+                                encoderDrive(.9, -3,-3,-3,-3,3);
+                                encoderDrive(.9, 15,-15,15,-15,5);
+                                encoderDrive(.9, 7,7,7,7,5);
+                                encoderDrive(.9, 60,-60,60,-60,5);
+                                encoderDrive(.9, -25,25,25,-25,5);*/
+                                encoderDrive(.9, -60,-60,-60,-60,3);
+                                encoderDrive(.9, -50,50,50,-50,3);
+                                // encoderDrive(.9, -15,-15,-15,-15,3);
+                                // encoderDrive(.9, 5,-5,-5,5,3);
+
+                                // encoderDrive(.9, -10,-10,-10,-10,3);
+                                // encoderDrive(.9, -4,4,4,-4,3);
+                                // encoderDrive(1, -57,-57,-57,-57,5);
+                                // encoderDrive(.9, 45,-45,-45,45,3);
+
+                                robot.Elbow.setPosition(.3);
+                            }
+
+
+                        }
+
                         if (updatedRecognitions.size() == 2) {
                             int goldMineralX = -1;
                             int silverMineral1X = -1;
@@ -287,7 +512,7 @@ public class Position2AllianceCopy extends LinearOpMode
                                     encoderDrive(.9, -45,45,45,-45,5);*/
                                     //encoderDrive(1, -60,-60,-60,-60,7);
                                     encoderDrive(1, -60,-60,-60,-60,7);
-                                   // encoderDrive(1, -45,45,45,-45,5);
+                                    // encoderDrive(1, -45,45,45,-45,5);
                                     encoderDrive(1, -45,45,45,-45,5);
 
                                     /* encoderDrive(.9, 5,5,5,5,3);
@@ -367,7 +592,7 @@ public class Position2AllianceCopy extends LinearOpMode
                                 // encoderDrive(.4,-7.44,7.44,7.44,-7.44,3);
                                 // encoderDrive(.4,18,18,18,18,3);
 
-                               while (runtime.seconds() < 3){
+                                while (runtime.seconds() < 3){
                                     robot.Dumper.setPosition(.175);
                                 }
                                 robot.Dumper.setPosition(.75);
@@ -391,9 +616,227 @@ public class Position2AllianceCopy extends LinearOpMode
                                 // encoderDrive(.9, 45,-45,-45,45,3);
 
                                 robot.Elbow.setPosition(.3);
-
                             }
                         }
+
+                        if (updatedRecognitions.size() == 3) {
+                            int goldMineralX = -1;
+                            int silverMineral1X = -1;
+                            int silverMineral2X = -1;
+                            int goldMineralRotation = 0;
+                            int silverMineral1XRotation = 0;
+                            int silverMineral2XRotation = 0;
+
+
+                            for (Recognition recognition : updatedRecognitions) {
+                                if (recognition.getLabel().equals(LABEL_GOLD_MINERAL)) {
+                                    goldMineralX = (int) recognition.getLeft();
+
+                                } else if (silverMineral1X == -1) {
+                                    silverMineral1X = (int) recognition.getLeft();
+                                    silverMineral1XRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
+                                } else {
+                                    silverMineral2X = (int) recognition.getLeft();
+                                    silverMineral2XRotation = (int) recognition.estimateAngleToObject(AngleUnit.DEGREES);
+                                }
+                            }
+
+                            telemetry.addData("Status", "Going to Mineral");
+
+
+                            if (goldMineralX != -1 && silverMineral1X != -1 && silverMineral2X != -1) {
+                                telemetry.addData("Minearals ", "Not equal to -1");
+
+                                if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
+
+
+                                    telemetry.addData("Gold Mineral Position", "Left");
+                                    encoderDrive(1, 18, 18, 18, 18, 3);
+                                    encoderDrive(1, 20, -20, 20, -20, 3);
+                                    encoderDrive(1, 7, 7, 7, 7, 3);
+                                    encoderDrive(1, 22, -22, 22, -22, 4);
+                                    encoderDrive(1, 8, -8, -8, 8, 3);
+                                    encoderDrive(1, -60, -60, -60, -60, 3);
+                                    encoderDrive(1, -45, 45, 45, -45, 3);
+
+                                    //encoderDrive(.4,-3.72,3.72,3.72,-3.72, 3);
+                                    //encoderDrive(.4,38,38,38,38,3);
+                                    //encoderDrive(.4, 10,10,10,10,3);
+                                    // encoderDrive(.4,5,-5,-5,5,3);
+                                    //encoderDrive(.4,9.2,-9.2,-9.2,9.2,3);
+                                    //encoderDrive(.4,16,16,16,16,3);
+                                    while (runtime.seconds() < 3) {
+                                        robot.Dumper.setPosition(.175);
+                                    }
+                                    robot.Dumper.setPosition(.75);
+                                    runtime.reset();/*
+                                    encoderDrive(1, -30,-30,-30,-30,5);
+                                    encoderDrive(.9, -3,3,-3,3,5);
+                                    encoderDrive(1, -30,-30,-30,-30,5);
+                                    encoderDrive(.9, -45,45,45,-45,5);*/
+                                    //encoderDrive(1, -60,-60,-60,-60,7);
+                                    encoderDrive(1, -60, -60, -60, -60, 7);
+                                    // encoderDrive(1, -45,45,45,-45,5);
+                                    encoderDrive(1, -45, 45, 45, -45, 5);
+
+                                    /* encoderDrive(.9, 5,5,5,5,3);
+                                    encoderDrive(.9, -3,-3,-3,-3,3);
+                                    encoderDrive(.9, -20,20,-20,20,5);
+                                    encoderDrive(.9, 2,2,2,2,3);
+                                    encoderDrive(.9, -60,60,-60,60,7);
+                                    encoderDrive(.9, -5,-5,-5,-5,5);
+                                    encoderDrive(.9, 22,-22,-22,22,5);
+                                    encoderDrive(.9, 4,4,4,4,3);*/
+                                    // encoderDrive(.4,-114,114,-114,114,3);
+
+                                    robot.Elbow.setPosition(.3);
+                                    //rotate(-20,.3);
+                                    /*while (robot.IMU.angles.secondAngle < 20){*/
+                                    // }
+                                    // } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                                }
+                                } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
+                                telemetry.addData("Gold Mineral Position", "Right");
+                                encoderDrive(1,16,16,16,16,3);
+                                encoderDrive(1, -20,20,-20,20,3);
+                                encoderDrive(.9, 7,7,7,7,3);
+                                encoderDrive(.9, -7,-7,-7,-7,3);
+                                //encoderDrive(.9, 15,15,15,15,3);
+                                encoderDrive(.9, 77,-77,77,-7,5);
+                                encoderDrive(.9, 7,-7,-7,7,5);
+                                encoderDrive(.9, -56,-56,-56,-56,5);
+                                encoderDrive(.9, 45,-45,-45,45,5);
+
+
+                                // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
+                                // encoderDrive(.4,38,38,38,38,3);
+                                // encoderDrive(.4,-7.44,7.44,7.44,-7.44,3);
+                                // encoderDrive(.4,18,18,18,18,3);
+
+                                while (runtime.seconds() < 3){
+                                    robot.Dumper.setPosition(.175);
+                                }
+                                robot.Dumper.setPosition(.75);
+                                runtime.reset();
+                                /*
+                                encoderDrive(.9, -3,3,3,-3,3);
+                                encoderDrive(.9, 4,4,4,4,3);
+                                encoderDrive(.9, -3,-3,-3,-3,3);
+                                encoderDrive(.9, 15,-15,15,-15,5);
+                                encoderDrive(.9, 7,7,7,7,5);
+                                encoderDrive(.9, 60,-60,60,-60,5);
+                                encoderDrive(.9, -25,25,25,-25,5);*/
+                                encoderDrive(.9, -60,-60,-60,-60,3);
+                                encoderDrive(.9, -50,50,50,-50,3);
+                                // encoderDrive(.9, -15,-15,-15,-15,3);
+                                // encoderDrive(.9, 5,-5,-5,5,3);
+
+                                // encoderDrive(.9, -10,-10,-10,-10,3);
+                                // encoderDrive(.9, -4,4,4,-4,3);
+                                // encoderDrive(1, -57,-57,-57,-57,5);
+                                // encoderDrive(.9, 45,-45,-45,45,3);
+
+                                robot.Elbow.setPosition(.3);
+                            } else {
+                                telemetry.addData("Gold Mineral Position", "Center");
+                                encoderDrive(.9,25,25,25,25,3);
+                                encoderDrive(.9, -9,-9,-9,-9,5);
+                                encoderDrive(.9, 50,-50,50,-50,7);
+                                encoderDrive(.9,9,-9,-9,9,3);
+                                encoderDrive(.9,-56,-56,-56,-56,3);
+                                encoderDrive(.9,-45,45,45,-45,3);
+                                // encoderDrive(.4,6,6,6,6,3);
+                                //encoderDrive(.9,12,12,12,12,3);
+                                // encoderDrive(.4, 5,-5,-5,5,3);
+                                // encoderDrive(.4, 14,14,14,14,3);
+                                // encoderDrive(.4,8,-8,-8,8,1);
+                                while (runtime.seconds() < 3){
+                                    robot.Dumper.setPosition(.175);
+                                }
+                                robot.Dumper.setPosition(.75);
+                                runtime.reset();
+                                encoderDrive(.9,-60,-60,-60,-60,3);
+                                encoderDrive(.9, -45,45,45,-45,3);
+
+                                //encoderDrive(.9,-35,-35,-35,-35,6);
+                                //Right top is set negative, Right bottom is set postive, Left top is set positive, Left bottom is set negative
+                                //encoderDrive(.7, 3, -3, 3,-3, 1);
+                                //encoderDrive(.9, 47,-47,47,-47,5);
+                                //encoderDrive(.9,-31,31,31,-31,3);
+                                //encoderDrive(.9,7,7,7,7,3);
+                                //encoderDrive(.7,-30,-30,-30,-30,4);
+                                //encoderDrive(.5,-7, 7, -7, 7, 3);
+                                //encoderDrive(.4,46.5,-46.5,-46.5,46.5,5);
+                                //encoderDrive(.9, 15,15,15,15,3);
+                                //encoderDrive(.4, 7,0,0,7,3);
+
+                                robot.Elbow.setPosition(.3);
+
+                                encoderDrive(.9, 10,10,10,10,3);
+
+                                //TEST  encoderDrive(.4,90,90,90,90,3);
+                                //encoderDrive(.4,-6,6,6,-6,3);
+                                //encoderDrive(.4,);
+                                //rotate(20,.3);
+                            }
+
+                        }
+
+                        if (updatedRecognitions.size() > 3) {
+                            int goldMineralX = -1;
+                            int silverMineral1X = -1;
+                            int silverMineral2X = -1;
+                            int goldMineralRotation = 0;
+                            int silverMineral1XRotation = 0;
+                            int silverMineral2XRotation = 0;
+
+
+                            for (Recognition recognition : updatedRecognitions) {
+
+                                telemetry.addData("Gold Mineral Position", "Center");
+                                encoderDrive(.9,25,25,25,25,3);
+                                encoderDrive(.9, -9,-9,-9,-9,5);
+                                encoderDrive(.9, 50,-50,50,-50,7);
+                                encoderDrive(.9,9,-9,-9,9,3);
+                                encoderDrive(.9,-56,-56,-56,-56,3);
+                                encoderDrive(.9,-45,45,45,-45,3);
+                                // encoderDrive(.4,6,6,6,6,3);
+                                //encoderDrive(.9,12,12,12,12,3);
+                                // encoderDrive(.4, 5,-5,-5,5,3);
+                                // encoderDrive(.4, 14,14,14,14,3);
+                                // encoderDrive(.4,8,-8,-8,8,1);
+                                while (runtime.seconds() < 3){
+                                    robot.Dumper.setPosition(.175);
+                                }
+                                robot.Dumper.setPosition(.75);
+                                runtime.reset();
+                                encoderDrive(.9,-60,-60,-60,-60,3);
+                                encoderDrive(.9, -45,45,45,-45,3);
+
+                                //encoderDrive(.9,-35,-35,-35,-35,6);
+                                //Right top is set negative, Right bottom is set postive, Left top is set positive, Left bottom is set negative
+                                //encoderDrive(.7, 3, -3, 3,-3, 1);
+                                //encoderDrive(.9, 47,-47,47,-47,5);
+                                //encoderDrive(.9,-31,31,31,-31,3);
+                                //encoderDrive(.9,7,7,7,7,3);
+                                //encoderDrive(.7,-30,-30,-30,-30,4);
+                                //encoderDrive(.5,-7, 7, -7, 7, 3);
+                                //encoderDrive(.4,46.5,-46.5,-46.5,46.5,5);
+                                //encoderDrive(.9, 15,15,15,15,3);
+                                //encoderDrive(.4, 7,0,0,7,3);
+
+                                robot.Elbow.setPosition(.3);
+
+                                encoderDrive(.9, 10,10,10,10,3);
+
+                                //TEST  encoderDrive(.4,90,90,90,90,3);
+                                //encoderDrive(.4,-6,6,6,-6,3);
+                                //encoderDrive(.4,);
+                                //rotate(20,.3);
+                            }
+
+                        }
+
                        /* else if (updatedRecognitions.size() == 0){
 
 

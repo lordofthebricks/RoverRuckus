@@ -391,13 +391,26 @@ public class Position1OpponentCopy extends LinearOpMode
                                 }
                                 robot.Dumper.setPosition(.75);
                                 runtime.reset();
-                                encoderDrive(.9, -10,-10,-10,-10,3);
-                                encoderDrive(.9, -4,4,4,-4,3);
-                                encoderDrive(1, -57,-57,-57,-57,5);
-                                encoderDrive(.9, 45,-45,-45,45,3);
+
+                                encoderDrive(.9, -3,3,3,-3,3);
+                                encoderDrive(.9, 4,4,4,4,3);
+                                encoderDrive(.9, -3,-3,-3,-3,3);
+                                encoderDrive(.9, 15,-15,15,-15,5);
+                                encoderDrive(.9, 7,7,7,7,5);
+                                encoderDrive(.9, 60,-60,60,-60,5);
+                                encoderDrive(.9, -25,25,25,-25,5);
+                                encoderDrive(.9, 7,7,7,7,5);
+
+
+                                // encoderDrive(.9, -15,-15,-15,-15,3);
+                                // encoderDrive(.9, 5,-5,-5,5,3);
+
+                                // encoderDrive(.9, -10,-10,-10,-10,3);
+                                // encoderDrive(.9, -4,4,4,-4,3);
+                                // encoderDrive(1, -57,-57,-57,-57,5);
+                                // encoderDrive(.9, 45,-45,-45,45,3);
 
                                 robot.Elbow.setPosition(.3);
-
                             }
 
 
@@ -550,15 +563,14 @@ public class Position1OpponentCopy extends LinearOpMode
 
 
                                 // encoderDrive(.9, -15,-15,-15,-15,3);
-                               // encoderDrive(.9, 5,-5,-5,5,3);
+                                // encoderDrive(.9, 5,-5,-5,5,3);
 
-                               // encoderDrive(.9, -10,-10,-10,-10,3);
-                               // encoderDrive(.9, -4,4,4,-4,3);
-                               // encoderDrive(1, -57,-57,-57,-57,5);
-                               // encoderDrive(.9, 45,-45,-45,45,3);
+                                // encoderDrive(.9, -10,-10,-10,-10,3);
+                                // encoderDrive(.9, -4,4,4,-4,3);
+                                // encoderDrive(1, -57,-57,-57,-57,5);
+                                // encoderDrive(.9, 45,-45,-45,45,3);
 
                                 robot.Elbow.setPosition(.3);
-
                             }
                         }
 
@@ -651,13 +663,26 @@ public class Position1OpponentCopy extends LinearOpMode
                                 }
                                 robot.Dumper.setPosition(.75);
                                 runtime.reset();
-                                encoderDrive(.9, -10,-10,-10,-10,3);
-                                encoderDrive(.9, -4,4,4,-4,3);
-                                encoderDrive(1, -57,-57,-57,-57,5);
-                                encoderDrive(.9, 45,-45,-45,45,3);
+
+                                encoderDrive(.9, -3,3,3,-3,3);
+                                encoderDrive(.9, 4,4,4,4,3);
+                                encoderDrive(.9, -3,-3,-3,-3,3);
+                                encoderDrive(.9, 15,-15,15,-15,5);
+                                encoderDrive(.9, 7,7,7,7,5);
+                                encoderDrive(.9, 60,-60,60,-60,5);
+                                encoderDrive(.9, -25,25,25,-25,5);
+                                encoderDrive(.9, 7,7,7,7,5);
+
+
+                                // encoderDrive(.9, -15,-15,-15,-15,3);
+                                // encoderDrive(.9, 5,-5,-5,5,3);
+
+                                // encoderDrive(.9, -10,-10,-10,-10,3);
+                                // encoderDrive(.9, -4,4,4,-4,3);
+                                // encoderDrive(1, -57,-57,-57,-57,5);
+                                // encoderDrive(.9, 45,-45,-45,45,3);
 
                                 robot.Elbow.setPosition(.3);
-
                             } else {
                                 telemetry.addData("Gold Mineral Position", "Center");
                                 encoderDrive(.9,38,38,38,38,3);
