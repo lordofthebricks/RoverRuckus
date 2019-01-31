@@ -66,19 +66,19 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             telemetry.addData("Yellow", robot.LeftColorSensor.green() - robot.LeftColorSensor.blue());
             telemetry.update();
 
-            if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue())  && robot.LeftColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue())) {
+            if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() >= 450) && robot.LeftColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() >= 450)) {
                 telemetry.addData("Color", "All Yellow");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_YELLOW);
-            } else if (robot.RightColorSensor.equals(Color.YELLOW) && robot.LeftColorSensor.equals(Color.WHITE)) {
+            } else if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() >= 450) && robot.LeftColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() <= 451)) {
                 telemetry.addData("Color", "Right Yellow, Left White");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_RED);
-            } else if (robot.RightColorSensor.equals(Color.WHITE) && robot.LeftColorSensor.equals(Color.YELLOW)) {
+            } else if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() <= 451) && robot.LeftColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() >= 450)) {
                 telemetry.addData("Color", "Right White, Left Yellow");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_RED);
-            } else if (robot.RightColorSensor.equals(Color.WHITE) && robot.LeftColorSensor.equals(Color.WHITE)) {
+            } else if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() <= 451) && robot.LeftColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue()<= 451)) {
                 telemetry.addData("Color", "All White");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_WHITE);
@@ -97,11 +97,11 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             telemetry.addData("Yellow", robot.RightColorSensor.green() - robot.RightColorSensor.blue());
             telemetry.update();
 
-            if (robot.RightColorSensor.equals(Color.YELLOW)) {
+            if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() >= 450)) {
                 telemetry.addData("Color Right", "Yellow");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_GREEN);
-            } else if (robot.RightColorSensor.equals(Color.WHITE)) {
+            } else if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() <= 451)) {
                 telemetry.addData("Color Right", "White");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_BLUE);
@@ -119,11 +119,11 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             telemetry.addData("Yellow", robot.LeftColorSensor.green() - robot.LeftColorSensor.blue());
             telemetry.update();
 
-            if (robot.LeftColorSensor.equals(Color.YELLOW)) {
+            if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() >= 450)) {
                 telemetry.addData("Color Left", "Yellow");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_GREEN);
-            } else if (robot.LeftColorSensor.equals(Color.WHITE)) {
+            } else if (robot.RightColorSensor.equals(robot.RightColorSensor.green() - robot.RightColorSensor.blue() <= 451)) {
                 telemetry.addData("Color Left", "White");
                 telemetry.update();
                 robot.LEDServo.setPosition(LED_BLUE);
