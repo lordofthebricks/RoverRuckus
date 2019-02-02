@@ -15,7 +15,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name = "Position2Opponent")
+@Autonomous(name = "Position2OpponentCopy")
 
 public class Position2OpponentCopy extends LinearOpMode
 {
@@ -246,7 +246,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 robot.Dumper.setPosition(.75);
                                 runtime.reset();
                                 encoderDrive(1, 25,-25,25,-25,5);
-                                encoderDrive(.9, 3,3,3,3,3);
+                                encoderDrive(.9, 5,5,5,5,3);
                                 encoderDrive(1, 30,-30,30,-30,5);
                                 encoderDrive(1, -27,27,27,-27,3);
                                 encoderDrive(1, 27,27,27,27,5);
@@ -383,7 +383,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                     robot.Dumper.setPosition(.75);
                                     runtime.reset();
                                     encoderDrive(1, 25,-25,25,-25,5);
-                                    encoderDrive(.9, 3,3,3,3,3);
+                                    encoderDrive(.9, 5,5,5,5,3);
                                     encoderDrive(1, 30,-30,30,-30,5);
                                     encoderDrive(1, -27,27,27,-27,3);
                                     encoderDrive(1, 27,27,27,27,5);
@@ -419,10 +419,10 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 5,5,5,5,3);
                                 encoderDrive(.9, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 32,-32,32,-32,5);
-                                encoderDrive(.9, 7,-7,-7,7,5);
-                                encoderDrive(.9, -40,-40,-40,-40,5);
-                                encoderDrive(.9, 50,-50,-50,50,5);
+                                encoderDrive(.9, 75,-75,75,-75,5);
+                                encoderDrive(.9, 8,-8,-8,8,5);
+                                encoderDrive(.9, -43,-43,-43,-43,5);
+                                encoderDrive(.9, 43,-43,-43,43,5);
 
 
                                 // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
@@ -443,11 +443,13 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 7,7,7,7,5);
                                 encoderDrive(.9, 60,-60,60,-60,5);
                                 encoderDrive(.9, -25,25,25,-25,5);*/
-                                encoderDrive(.9, 3,3,3,3,3);
-                                encoderDrive(.9, 30,-30,30,-30,5);
-                                encoderDrive(.9, 3,3,3,3,3);
-                                encoderDrive(.9, 30,-30,30,-30,5);
-                                encoderDrive(.9, -23,23,23,-23,3);
+                                //encoderDrive(.9, 3,3,3,3,3);
+                                //encoderDrive(.9, 7,-7,7,-7,5);
+                                encoderDrive(1, 15,-15,15,-15,5);
+                                encoderDrive(1, 7,7,7,7,3);
+                                encoderDrive(1, 45,-45,45,-45,5);
+                                encoderDrive(1, -27,27,27,-27,3);
+                                encoderDrive(1, 19,19,19,19,3);
                                 // encoderDrive(.9, -15,-15,-15,-15,3);
                                 // encoderDrive(.9, 5,-5,-5,5,3);
 
@@ -567,7 +569,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                     robot.Dumper.setPosition(.75);
                                     runtime.reset();
                                     encoderDrive(1, 25,-25,25,-25,5);
-                                    encoderDrive(.9, 3,3,3,3,3);
+                                    encoderDrive(.9, 5,5,5,5,3);
                                     encoderDrive(1, 30,-30,30,-30,5);
                                     encoderDrive(1, -27,27,27,-27,3);
                                     encoderDrive(1, 27,27,27,27,5);
@@ -603,10 +605,10 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 5,5,5,5,3);
                                 encoderDrive(.9, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 32,-32,32,-32,5);
-                                encoderDrive(.9, 7,-7,-7,7,5);
-                                encoderDrive(.9, -40,-40,-40,-40,5);
-                                encoderDrive(.9, 50,-50,-50,50,5);
+                                encoderDrive(.9, 75,-75,75,-75,5);
+                                encoderDrive(.9, 8,-8,-8,8,5);
+                                encoderDrive(.9, -43,-43,-43,-43,5);
+                                encoderDrive(.9, 43,-43,-43,43,5);
 
 
                                 // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
@@ -627,11 +629,13 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 7,7,7,7,5);
                                 encoderDrive(.9, 60,-60,60,-60,5);
                                 encoderDrive(.9, -25,25,25,-25,5);*/
-                                encoderDrive(.9, 3,3,3,3,3);
-                                encoderDrive(.9, 30,-30,30,-30,5);
-                                encoderDrive(.9, 3,3,3,3,3);
-                                encoderDrive(.9, 30,-30,30,-30,5);
-                                encoderDrive(.9, -23,23,23,-23,3);
+                                //encoderDrive(.9, 3,3,3,3,3);
+                                //encoderDrive(.9, 7,-7,7,-7,5);
+                                encoderDrive(1, 15,-15,15,-15,5);
+                                encoderDrive(1, 7,7,7,7,3);
+                                encoderDrive(1, 45,-45,45,-45,5);
+                                encoderDrive(1, -27,27,27,-27,3);
+                                encoderDrive(1, 19,19,19,19,3);
                                 // encoderDrive(.9, -15,-15,-15,-15,3);
                                 // encoderDrive(.9, 5,-5,-5,5,3);
 
@@ -728,10 +732,10 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 5,5,5,5,3);
                                 encoderDrive(.9, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 32,-32,32,-32,5);
-                                encoderDrive(.9, 7,-7,-7,7,5);
-                                encoderDrive(.9, -40,-40,-40,-40,5);
-                                encoderDrive(.9, 50,-50,-50,50,5);
+                                encoderDrive(.9, 75,-75,75,-75,5);
+                                encoderDrive(.9, 8,-8,-8,8,5);
+                                encoderDrive(.9, -43,-43,-43,-43,5);
+                                encoderDrive(.9, 43,-43,-43,43,5);
 
 
                                 // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
@@ -752,11 +756,13 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 7,7,7,7,5);
                                 encoderDrive(.9, 60,-60,60,-60,5);
                                 encoderDrive(.9, -25,25,25,-25,5);*/
-                                encoderDrive(.9, 3,3,3,3,3);
-                                encoderDrive(.9, 30,-30,30,-30,5);
-                                encoderDrive(.9, 3,3,3,3,3);
-                                encoderDrive(.9, 30,-30,30,-30,5);
-                                encoderDrive(.9, -23,23,23,-23,3);
+                                //encoderDrive(.9, 3,3,3,3,3);
+                                //encoderDrive(.9, 7,-7,7,-7,5);
+                                encoderDrive(1, 15,-15,15,-15,5);
+                                encoderDrive(1, 7,7,7,7,3);
+                                encoderDrive(1, 45,-45,45,-45,5);
+                                encoderDrive(1, -27,27,27,-27,3);
+                                encoderDrive(1, 19,19,19,19,3);
                                 // encoderDrive(.9, -15,-15,-15,-15,3);
                                 // encoderDrive(.9, 5,-5,-5,5,3);
 
@@ -766,6 +772,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 // encoderDrive(.9, 45,-45,-45,45,3);
 
                                 robot.Elbow.setPosition(.3);
+
                             } else {
                                 telemetry.addData("Gold Mineral Position", "Center");
                                 encoderDrive(1,25,25,25,25,3);
@@ -845,7 +852,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 robot.Dumper.setPosition(.75);
                                 runtime.reset();
                                 encoderDrive(1, 25,-25,25,-25,5);
-                                encoderDrive(.9, 3,3,3,3,3);
+                                encoderDrive(.9, 5,5,5,5,3);
                                 encoderDrive(1, 30,-30,30,-30,5);
                                 encoderDrive(1, -27,27,27,-27,3);
                                 encoderDrive(1, 27,27,27,27,5);

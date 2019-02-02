@@ -294,10 +294,10 @@ public class Position1AllianceCopy extends LinearOpMode
                                 //if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                                 if (goldMineralX < silverMineral1X) {
                                     telemetry.addData("Gold Mineral Position", "Left");
-                                    encoderDrive(1, 20, 20, 20, 20, 3);
-                                    encoderDrive(.9, 20, -20, 20, -20, 3);
-                                    encoderDrive(.9, 25, 25, 25, 25, 3);
-                                    encoderDrive(.6, 5, -5, -5, 5, 3);
+                                    encoderDrive(1, 18, 18, 18, 18, 3);
+                                    encoderDrive(1, 20, -20, 20, -20, 3);
+                                    encoderDrive(1, 25, 25, 25, 25, 3);
+                                    encoderDrive(1, 5, -5, -5, 5, 3);
                                     encoderDrive(1, 20, 20, 20, 20, 5);
                                     encoderDrive(.9, 7, -7, -7, 7, 3);
                                     //encoderDrive(.4,-3.72,3.72,3.72,-3.72, 3);
@@ -311,8 +311,8 @@ public class Position1AllianceCopy extends LinearOpMode
                                     }
                                     robot.Dumper.setPosition(.75);
                                     runtime.reset();
-                                    encoderDrive(.9, 5, 5, 5, 5, 3);
-                                    encoderDrive(.9, -3, -3, -3, -3, 3);
+                                    encoderDrive(.9, 2, 2, 2, 2, 3);
+                                    //encoderDrive(.9, -5, -5, -5, -5, 3);
                                     encoderDrive(.9, -20, 20, -20, 20, 5);
                                     encoderDrive(.9, 2, 2, 2, 2, 3);
                                     encoderDrive(.9, -60, 60, -60, 60, 7);
@@ -434,31 +434,31 @@ public class Position1AllianceCopy extends LinearOpMode
                                 //if (goldMineralX < silverMineral1X && goldMineralX < silverMineral2X) {
                                 if (goldMineralX < silverMineral1X) {
                                     telemetry.addData("Gold Mineral Position", "Left");
-                                    encoderDrive(1,20,20,20,20,3);
-                                    encoderDrive(.9, 20,-20,20,-20,3);
-                                    encoderDrive(.9, 25,25,25,25,3);
-                                    encoderDrive(.6, 5,-5,-5,5,3);
-                                    encoderDrive(1, 20,20,20,20,5);
-                                    encoderDrive(.9, 7,-7,-7,7,3);
+                                    encoderDrive(1, 18, 18, 18, 18, 3);
+                                    encoderDrive(1, 20, -20, 20, -20, 3);
+                                    encoderDrive(1, 25, 25, 25, 25, 3);
+                                    encoderDrive(1, 5, -5, -5, 5, 3);
+                                    encoderDrive(1, 20, 20, 20, 20, 5);
+                                    encoderDrive(.9, 7, -7, -7, 7, 3);
                                     //encoderDrive(.4,-3.72,3.72,3.72,-3.72, 3);
                                     //encoderDrive(.4,38,38,38,38,3);
                                     //encoderDrive(.4, 10,10,10,10,3);
                                     // encoderDrive(.4,5,-5,-5,5,3);
                                     //encoderDrive(.4,9.2,-9.2,-9.2,9.2,3);
                                     //encoderDrive(.4,16,16,16,16,3);
-                                    while (runtime.seconds() < 3){
+                                    while (runtime.seconds() < 3) {
                                         robot.Dumper.setPosition(.175);
                                     }
                                     robot.Dumper.setPosition(.75);
                                     runtime.reset();
-                                    encoderDrive(.9, 5,5,5,5,3);
-                                    encoderDrive(.9, -3,-3,-3,-3,3);
-                                    encoderDrive(.9, -20,20,-20,20,5);
-                                    encoderDrive(.9, 2,2,2,2,3);
-                                    encoderDrive(.9, -60,60,-60,60,7);
-                                    encoderDrive(.9, -5,-5,-5,-5,5);
-                                    encoderDrive(.9, 22,-22,-22,22,5);
-                                    encoderDrive(.9, 4,4,4,4,3);
+                                    encoderDrive(.9, 2, 2, 2, 2, 3);
+                                    //encoderDrive(.9, -5, -5, -5, -5, 3);
+                                    encoderDrive(.9, -20, 20, -20, 20, 5);
+                                    encoderDrive(.9, 2, 2, 2, 2, 3);
+                                    encoderDrive(.9, -60, 60, -60, 60, 7);
+                                    encoderDrive(.9, -5, -5, -5, -5, 5);
+                                    encoderDrive(.9, 22, -22, -22, 22, 5);
+                                    encoderDrive(.9, 4, 4, 4, 4, 3);
                                     // encoderDrive(.4,-114,114,-114,114,3);
 
                                     robot.Elbow.setPosition(.3);
@@ -559,50 +559,38 @@ public class Position1AllianceCopy extends LinearOpMode
 
 
                                     telemetry.addData("Gold Mineral Position", "Left");
-
-                                    encoderDrive(1,20,20,20,20,3);
-
-                                    encoderDrive(.9, 20,-20,20,-20,3);
-
-                                    encoderDrive(.9, 25,25,25,25,3);
-
-                                    encoderDrive(.6, 5,-5,-5,5,3);
-
-                                    encoderDrive(1, 20,20,20,20,5);
-
-                                    encoderDrive(.9, 7,-7,-7,7,3);
-
-
-                                    while (runtime.seconds() < 3){
-
+                                    encoderDrive(1, 18, 18, 18, 18, 3);
+                                    encoderDrive(1, 20, -20, 20, -20, 3);
+                                    encoderDrive(1, 25, 25, 25, 25, 3);
+                                    encoderDrive(1, 5, -5, -5, 5, 3);
+                                    encoderDrive(1, 20, 20, 20, 20, 5);
+                                    encoderDrive(.9, 7, -7, -7, 7, 3);
+                                    //encoderDrive(.4,-3.72,3.72,3.72,-3.72, 3);
+                                    //encoderDrive(.4,38,38,38,38,3);
+                                    //encoderDrive(.4, 10,10,10,10,3);
+                                    // encoderDrive(.4,5,-5,-5,5,3);
+                                    //encoderDrive(.4,9.2,-9.2,-9.2,9.2,3);
+                                    //encoderDrive(.4,16,16,16,16,3);
+                                    while (runtime.seconds() < 3) {
                                         robot.Dumper.setPosition(.175);
-
                                     }
-
                                     robot.Dumper.setPosition(.75);
-
                                     runtime.reset();
-
-                                    encoderDrive(.9, 5,5,5,5,3);
-
-                                    encoderDrive(.9, -3,-3,-3,-3,3);
-
-                                    encoderDrive(.9, -20,20,-20,20,5);
-
-                                    encoderDrive(.9, 2,2,2,2,3);
-
-                                    encoderDrive(.9, -60,60,-60,60,7);
-
-                                    encoderDrive(.9, -5,-5,-5,-5,5);
-
-                                    encoderDrive(.9, 22,-22,-22,22,5);
-
-                                    encoderDrive(.9, 4,4,4,4,3);
-
-
+                                    encoderDrive(.9, 2, 2, 2, 2, 3);
+                                    //encoderDrive(.9, -5, -5, -5, -5, 3);
+                                    encoderDrive(.9, -20, 20, -20, 20, 5);
+                                    encoderDrive(.9, 2, 2, 2, 2, 3);
+                                    encoderDrive(.9, -60, 60, -60, 60, 7);
+                                    encoderDrive(.9, -5, -5, -5, -5, 5);
+                                    encoderDrive(.9, 22, -22, -22, 22, 5);
+                                    encoderDrive(.9, 4, 4, 4, 4, 3);
+                                    // encoderDrive(.4,-114,114,-114,114,3);
 
                                     robot.Elbow.setPosition(.3);
+                                    //rotate(-20,.3);
+                                    /*while (robot.IMU.angles.secondAngle < 20){
 
+                                    }*/
                                 }
                             } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                                 telemetry.addData("Gold Mineral Position", "Right");

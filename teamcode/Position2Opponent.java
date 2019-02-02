@@ -288,9 +288,9 @@ public class Position2Opponent extends LinearOpMode
                                     encoderDrive(.9, -3,3,-3,3,5);
                                     encoderDrive(1, -30,-30,-30,-30,5);
                                     encoderDrive(.9, -45,45,45,-45,5);*/
-                                    encoderDrive(.9, 5,5,5,5,3);
-                                    encoderDrive(.9, 25,-25,25,-25,5);
                                     encoderDrive(.9, 3,3,3,3,3);
+                                    encoderDrive(.9, 25,-25,25,-25,5);
+                                    encoderDrive(.9, 1,1,1,1,3);
                                     encoderDrive(.9, 30,-30,30,-30,5);
                                     encoderDrive(.9, -27,27,27,-27,3);
                                     encoderDrive(.9, 20,20,20,20,5);
@@ -367,7 +367,7 @@ public class Position2Opponent extends LinearOpMode
                                 encoderDrive(.9, 5,5,5,5,3);
                                 encoderDrive(.9, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 32,-32,32,-32,5);
+                                encoderDrive(.9, 75,-75,75,-75,5);
                                 encoderDrive(.9, 7,-7,-7,7,5);
                                 encoderDrive(.9, -40,-40,-40,-40,5);
                                 encoderDrive(.9, 50,-50,-50,50,5);

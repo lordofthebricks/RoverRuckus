@@ -14,7 +14,7 @@ import org.firstinspires.ftc.robotcore.external.tfod.TFObjectDetector;
 
 import java.util.List;
 
-@Autonomous(name = "Position2Defense")
+@Autonomous(name = "Position2DefenseCopy")
 
 public class Position2DefenseCopy extends LinearOpMode
 {
