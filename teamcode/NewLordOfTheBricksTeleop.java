@@ -34,11 +34,6 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
         waitForStart();
 
         while (opModeIsActive()){
-            telemetry.addData("Right Top Motor Speed", robot.Right_Top.getPower());
-            telemetry.addData("Right Bottom Motor Speed", robot.Right_Bottom.getPower());
-            telemetry.addData("Left Top Motor Speed", robot.Left_Top.getPower());
-            telemetry.addData("Left Bottom Motor Speed", robot.Left_Bottom.getPower());
-            //telemetry.addData("")
 
             // This is for reading in both color/ distance sensors
        /* if ((robot.RightDistanceSensor.getDistance(DistanceUnit.INCH)) <= 2.5 && (robot.LeftDistanceSensor.getDistance(DistanceUnit.INCH)) <= 2.5) {
@@ -221,19 +216,19 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
                 //robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 //robot.Left_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 //robot.Left_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                robot.Right_Top.setPower(-.7);
-                robot.Right_Bottom.setPower(.7);
-                robot.Left_Bottom.setPower(-.7);
-                robot.Left_Top.setPower(.7);
+                robot.Right_Top.setPower(.7);
+                robot.Right_Bottom.setPower(-.7);
+                robot.Left_Bottom.setPower(.7);
+                robot.Left_Top.setPower(-.7);
             } while (gamepad1.left_stick_x == -1){
               //  robot.Right_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
               //  robot.Right_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
               //  robot.Left_Bottom.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
               //  robot.Left_Top.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-                robot.Right_Top.setPower(.7);
-                robot.Right_Bottom.setPower(-.7);
-                robot.Left_Bottom.setPower(.7);
-                robot.Left_Top.setPower(-.7);
+                robot.Right_Top.setPower(-.7);
+                robot.Right_Bottom.setPower(.7);
+                robot.Left_Bottom.setPower(-.7);
+                robot.Left_Top.setPower(.7);
             }
 
             if (gamepad1.a) {
@@ -243,8 +238,6 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
             } else if (gamepad1.right_trigger == 1){
                 robot.Lift.setPower(0);
             }
-
-
 
 
             if (gamepad1.left_bumper) {
@@ -261,10 +254,6 @@ public class NewLordOfTheBricksTeleop extends LinearOpMode
                 robot.Shoulder.setPower(-.3);
             } else if (gamepad1.dpad_left){
                 robot.Shoulder.setPower(.1);
-            }
-
-            if (gamepad1.b){
-                robot.Elbow.setPosition(.3);
             }
         }
     }
