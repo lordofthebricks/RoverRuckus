@@ -87,10 +87,18 @@ public class NewLordOfTheBricksTeleopWitLED extends LinearOpMode
                     telemetry.update();
                     robot.LEDServo.setPosition(LED_GREEN);
                     //else robot.LEDServo.setPosition(1);
+                } else if (robot.RightColorSensor.green() - robot.RightColorSensor.blue() >=451){
+                    telemetry.addData("Color", "Only 1 Mineral:  White");
+                    telemetry.update();
+                    robot.LEDServo.setPosition(LED_BLUE);
                 } else if (robot.LeftColorSensor.green() - robot.LeftColorSensor.blue() >=451){
                     telemetry.addData("Color", "Only 1 Mineral:  White");
                     telemetry.update();
                     robot.LEDServo.setPosition(LED_BLUE);
+                } else if (robot.LeftColorSensor.green() - robot.LeftColorSensor.blue() <=450){
+                    telemetry.addData("Color", "Only 1 Mineral:  Yellow");
+                    telemetry.update();
+                    robot.LEDServo.setPosition(LED_GREEN);
                 }
 
             }

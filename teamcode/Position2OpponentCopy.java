@@ -75,11 +75,11 @@ public class Position2OpponentCopy extends LinearOpMode
         //imu.startAccelerationIntegration(new Position(), new Velocity(), 1000);
 
         // angles = imu.getAngularOrientation(AxesReference.EXTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+       /* BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.mode                = BNO055IMU.SensorMode.IMU;
         parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
         parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.loggingEnabled      = false;
+        parameters.loggingEnabled      = false;*/
 
         robot.init(hardwareMap);
 
@@ -178,7 +178,7 @@ public class Position2OpponentCopy extends LinearOpMode
 
             runtime.reset();
 
-            while (opModeIsActive() && (runtime.seconds() < .35)){
+            while (opModeIsActive() && (runtime.seconds() < .3)){
                 robot.Right_Bottom.setPower(.6);
                 robot.Right_Top.setPower(-.6);
                 robot.Left_Bottom.setPower(-.6);
@@ -192,7 +192,7 @@ public class Position2OpponentCopy extends LinearOpMode
 
             runtime.reset();
 
-            while (opModeIsActive() && (runtime.seconds() < 2)){
+            while (opModeIsActive() && (runtime.seconds() < 1)){
                 robot.Lift.setPower(-1);
             }
 
@@ -211,6 +211,8 @@ public class Position2OpponentCopy extends LinearOpMode
             robot.Left_Top.setPower(0);
             robot.Right_Top.setPower(0);
             robot.Right_Bottom.setPower(0);
+
+            robot.Dumper.setPosition(.6);
 
             runtime.reset();
             while (opModeIsActive()) {
@@ -415,14 +417,15 @@ public class Position2OpponentCopy extends LinearOpMode
                             else {
                                 telemetry.addData("Gold Mineral Position", "Right");
                                 encoderDrive(1,16,16,16,16,3);
-                                encoderDrive(.9, -20,20,-20,20,3);
-                                encoderDrive(.9, 5,5,5,5,3);
-                                encoderDrive(.9, -5,-5,-5,-5,3);
+                                encoderDrive(1, -20,20,-20,20,3);
+                                encoderDrive(1, 5,5,5,5,3);
+                                encoderDrive(1, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 75,-75,75,-75,5);
-                                encoderDrive(.9, 8,-8,-8,8,5);
-                                encoderDrive(.9, -43,-43,-43,-43,5);
-                                encoderDrive(.9, 43,-43,-43,43,5);
+                                encoderDrive(1, 75,-75,75,-75,5);
+                                encoderDrive(1, 8,-8,-8,8,5);
+                                encoderDrive(1, -43,-43,-43,-43,5);
+                                encoderDrive(1, 43,-43,-43,43,5);
+                                encoderDrive(1,5,5,5,5,3);
 
 
                                 // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
@@ -430,7 +433,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 // encoderDrive(.4,-7.44,7.44,7.44,-7.44,3);
                                 // encoderDrive(.4,18,18,18,18,3);
 
-                                while (runtime.seconds() < 3){
+                                while (runtime.seconds() < 1.5){
                                     robot.Dumper.setPosition(.175);
                                 }
                                 robot.Dumper.setPosition(.75);
@@ -444,7 +447,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 60,-60,60,-60,5);
                                 encoderDrive(.9, -25,25,25,-25,5);*/
                                 //encoderDrive(.9, 3,3,3,3,3);
-                                //encoderDrive(.9, 7,-7,7,-7,5);
+                                encoderDrive(.9, -5,-5,-5,-5,5);
                                 encoderDrive(1, 15,-15,15,-15,5);
                                 encoderDrive(1, 7,7,7,7,3);
                                 encoderDrive(1, 45,-45,45,-45,5);
@@ -601,14 +604,15 @@ public class Position2OpponentCopy extends LinearOpMode
                             if (goldMineralX == -1){
                                 telemetry.addData("Gold Mineral Position", "Right");
                                 encoderDrive(1,16,16,16,16,3);
-                                encoderDrive(.9, -20,20,-20,20,3);
-                                encoderDrive(.9, 5,5,5,5,3);
-                                encoderDrive(.9, -5,-5,-5,-5,3);
+                                encoderDrive(1, -20,20,-20,20,3);
+                                encoderDrive(1, 5,5,5,5,3);
+                                encoderDrive(1, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 75,-75,75,-75,5);
-                                encoderDrive(.9, 8,-8,-8,8,5);
-                                encoderDrive(.9, -43,-43,-43,-43,5);
-                                encoderDrive(.9, 43,-43,-43,43,5);
+                                encoderDrive(1, 75,-75,75,-75,5);
+                                encoderDrive(1, 8,-8,-8,8,5);
+                                encoderDrive(1, -43,-43,-43,-43,5);
+                                encoderDrive(1, 43,-43,-43,43,5);
+                                encoderDrive(1,5,5,5,5,3);
 
 
                                 // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
@@ -616,7 +620,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 // encoderDrive(.4,-7.44,7.44,7.44,-7.44,3);
                                 // encoderDrive(.4,18,18,18,18,3);
 
-                                while (runtime.seconds() < 3){
+                                while (runtime.seconds() < 1.5){
                                     robot.Dumper.setPosition(.175);
                                 }
                                 robot.Dumper.setPosition(.75);
@@ -630,7 +634,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 60,-60,60,-60,5);
                                 encoderDrive(.9, -25,25,25,-25,5);*/
                                 //encoderDrive(.9, 3,3,3,3,3);
-                                //encoderDrive(.9, 7,-7,7,-7,5);
+                                encoderDrive(.9, -5,-5,-5,-5,5);
                                 encoderDrive(1, 15,-15,15,-15,5);
                                 encoderDrive(1, 7,7,7,7,3);
                                 encoderDrive(1, 45,-45,45,-45,5);
@@ -728,14 +732,15 @@ public class Position2OpponentCopy extends LinearOpMode
                             } else if (goldMineralX > silverMineral1X && goldMineralX > silverMineral2X) {
                                 telemetry.addData("Gold Mineral Position", "Right");
                                 encoderDrive(1,16,16,16,16,3);
-                                encoderDrive(.9, -20,20,-20,20,3);
-                                encoderDrive(.9, 5,5,5,5,3);
-                                encoderDrive(.9, -5,-5,-5,-5,3);
+                                encoderDrive(1, -20,20,-20,20,3);
+                                encoderDrive(1, 5,5,5,5,3);
+                                encoderDrive(1, -5,-5,-5,-5,3);
                                 //encoderDrive(.9, 15,15,15,15,3);
-                                encoderDrive(.9, 75,-75,75,-75,5);
-                                encoderDrive(.9, 8,-8,-8,8,5);
-                                encoderDrive(.9, -43,-43,-43,-43,5);
-                                encoderDrive(.9, 43,-43,-43,43,5);
+                                encoderDrive(1, 75,-75,75,-75,5);
+                                encoderDrive(1, 8,-8,-8,8,5);
+                                encoderDrive(1, -43,-43,-43,-43,5);
+                                encoderDrive(1, 43,-43,-43,43,5);
+                                encoderDrive(1,5,5,5,5,3);
 
 
                                 // encoderDrive(.4,3.72,-3.72,-3.72,3.72,3);
@@ -743,7 +748,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 // encoderDrive(.4,-7.44,7.44,7.44,-7.44,3);
                                 // encoderDrive(.4,18,18,18,18,3);
 
-                                while (runtime.seconds() < 3){
+                                while (runtime.seconds() < 1.5){
                                     robot.Dumper.setPosition(.175);
                                 }
                                 robot.Dumper.setPosition(.75);
@@ -757,7 +762,7 @@ public class Position2OpponentCopy extends LinearOpMode
                                 encoderDrive(.9, 60,-60,60,-60,5);
                                 encoderDrive(.9, -25,25,25,-25,5);*/
                                 //encoderDrive(.9, 3,3,3,3,3);
-                                //encoderDrive(.9, 7,-7,7,-7,5);
+                                encoderDrive(.9, -5,-5,-5,-5,5);
                                 encoderDrive(1, 15,-15,15,-15,5);
                                 encoderDrive(1, 7,7,7,7,3);
                                 encoderDrive(1, 45,-45,45,-45,5);
